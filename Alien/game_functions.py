@@ -2,7 +2,7 @@ import sys,pygame,random
 from bullet import Bullet
 from monter import Monter
 def check_events(ship,screen,bullets):
-    #respond to  keyboard and mouse item
+    #键盘监听
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -21,15 +21,12 @@ def check_events(ship,screen,bullets):
                 ship.moving_left = False
 
 def update_screen(screen,ship,bullets,monster):
-    # background
     bg_color = (230, 230, 230)
-    # fill color
     screen.fill(bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
     monster.draw(screen)
-    # visualiaze the window
     pygame.display.flip()
 
 # 开火
@@ -48,7 +45,8 @@ def create_alien(screen, monters, alien_number):
         monters.add(monter)
 
 # 碰撞检测
-def check_bullet_alien_collisions(monter, bullets):
+def check_bullet_alien_collisions(screen,monter, bullets):
     collisions = pygame.sprite.groupcollide(bullets, monter, True, True)
     if collisions:
-        print("杀死了怪物")
+        print("杀死了怪物,继续随机产生")
+        create_alien(screen,monter,1)

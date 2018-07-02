@@ -1,8 +1,6 @@
-import sys,pygame,random
+import pygame,random
 from ship import Ship
 from pygame.sprite import Group
-from bullet import Bullet
-from monter import Monter
 import game_functions as gf
 
 def run_game():
@@ -25,12 +23,13 @@ def run_game():
         # 改变自己位置
         ship.update()
         bullets.update()
+        monster.update()
         for bullet in bullets.copy():
             if bullet.rect.bottom <= 0:
                 print("删除消失的子弹")
                 bullets.remove(bullet)
-        gf.check_bullet_alien_collisions(monster, bullets)
+        # 判断怪物是不是被杀死了
+        gf.check_bullet_alien_collisions(screen,monster, bullets)
         # 如果自己移动，重绘屏幕
         gf.update_screen(screen, ship,bullets,monster)
-
 run_game()

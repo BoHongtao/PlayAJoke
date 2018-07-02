@@ -5,7 +5,7 @@ class Ship():
     def __init__(self,screen):
         self.screen = screen
         # 加载飞机图片
-        self.image = pygame.image.load(r'D:\codeingSpace\pythoncode\game\Alien\images\ship.bmp')
+        self.image = pygame.image.load(r'D:\git\pygame\PlayAJoke\Alien\images\ship.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         # 指定位置
