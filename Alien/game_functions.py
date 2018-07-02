@@ -1,8 +1,6 @@
 import sys,pygame,random
-
 from bullet import Bullet
 from monter import Monter
-
 def check_events(ship,screen,bullets):
     #respond to  keyboard and mouse item
     for event in pygame.event.get():
@@ -34,17 +32,23 @@ def update_screen(screen,ship,bullets,monster):
     # visualiaze the window
     pygame.display.flip()
 
-
+# 开火
 def fire_bullet(screen, ship, bullets):
     new_bullet = Bullet(screen, ship)
     bullets.add(new_bullet)
 
-# 产生机器人
+# 产生怪物
 def create_alien(screen, monters, alien_number):
     for i in range(0,int(alien_number)):
         monter = Monter(screen)
         monter.x = random.uniform(0,1200)
         monter.rect.x = monter.x
-        monter.y = random.uniform(0,800)
+        monter.y = random.uniform(100,600)
         monter.rect.y = monter.y
         monters.add(monter)
+
+# 碰撞检测
+def check_bullet_alien_collisions(monter, bullets):
+    collisions = pygame.sprite.groupcollide(bullets, monter, True, True)
+    if collisions:
+        print("杀死了怪物")

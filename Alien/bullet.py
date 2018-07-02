@@ -5,7 +5,7 @@ class Bullet(Sprite):
     bullet_width = 5
     bullet_height = 15
     bullet_speed_factor = 3
-    bullet_color = 60, 60, 60
+    bullet_color = 255, 0, 0
     def __init__(self, screen, ship):
         super().__init__()
         self.screen = screen

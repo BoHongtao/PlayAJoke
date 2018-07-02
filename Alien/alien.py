@@ -29,6 +29,7 @@ def run_game():
             if bullet.rect.bottom <= 0:
                 print("删除消失的子弹")
                 bullets.remove(bullet)
+        gf.check_bullet_alien_collisions(monster, bullets)
         # 如果自己移动，重绘屏幕
         gf.update_screen(screen, ship,bullets,monster)
 
